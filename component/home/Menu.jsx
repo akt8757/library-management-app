@@ -5,9 +5,22 @@ import Link from "next/link";
 import { useState } from "react";
 import { X } from "lucide-react";
 import { Menu as Nav } from "lucide-react";
+import { useEffect } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function Menu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data) {
+        setUser(data.session);
+      }
+    };
+    checkUser();
+  }, []);
+  console.log("session from menu", user);
   return (
     <div>
       <nav className="fixed w-full backdrop-blur-md bg-black/50 border-b border-purple-500/20 z-50">
@@ -45,11 +58,19 @@ export default function Menu() {
             >
               Testimonials
             </a>
-            <Link href="/register">
-              <button className="px-6 py-2 bg-brandColor rounded-lg hover:bg-brandColor/90 transition w-full md:w-auto">
-                Sign In
-              </button>
-            </Link>
+            {user ? (
+              <Link href="/dashboard">
+                <button className="px-6 py-2 bg-brandColor rounded-lg hover:bg-brandColor/90 transition w-full md:w-auto">
+                  Dashboard
+                </button>
+              </Link>
+            ) : (
+              <Link href="/register">
+                <button className="px-6 py-2 bg-brandColor rounded-lg hover:bg-brandColor/90 transition w-full md:w-auto">
+                  Sign In
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </nav>

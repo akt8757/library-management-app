@@ -1,6 +1,5 @@
 "use client";
-
-import { Button } from "@heroui/react";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
@@ -10,6 +9,7 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { BookOpen } from "lucide-react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function Login({ signInPopup, closeSignUp }) {
   const [showPassword, setShowPassword] = useState(true);
@@ -27,12 +27,20 @@ export default function Login({ signInPopup, closeSignUp }) {
     mode: "onChange",
   });
 
-  const submitForm = async (data) => {
-    const formData = {
-      email: data.email,
-      password: data.password,
-      password_confirmation: data.password,
-    };
+  const submitForm = async (value) => {
+    const email = value.email;
+    const password = value.password;
+    console.log("mail:", email);
+    console.log("password:", password);
+    const { data } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (data.user === null) {
+      setError("user not register");
+    } else {
+    }
   };
 
   return (

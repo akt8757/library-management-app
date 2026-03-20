@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@heroui/react";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
@@ -11,11 +11,12 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { BookOpen } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(true);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [getError, setGetError] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
 
@@ -32,11 +33,18 @@ export default function Register() {
     const { data, error } = await supabase.auth.signUp({
       email: value.email,
       password: value.password,
+      options: {
+        emailRedirectTo: "http://localhost:3000/auth/callback",
+      },
     });
     setLoading(false);
 
-    if (error) console.log("Signup error:", error);
-    else console.log("Signup success:", data);
+    if (error) {
+      setGetError(error.message);
+      console.log("Signup error:", error);
+    } else {
+      console.log("Signup success:", data);
+    }
   };
 
   return (
@@ -139,11 +147,15 @@ export default function Register() {
               </span>
             </div>
             <Button
-              isLoading={loading}
-              disabled={!isChecked}
+              disabled={!isChecked || loading}
               type="submit"
-              className="w-full bg-[#49BBBD] text-white font-bold font-dm text-base py-6 mt-5 rounded-full transition"
+              className="w-full cursor-pointer bg-[#49BBBD] text-white font-bold font-dm text-base py-6 mt-5 rounded-full transition"
             >
+              {loading ? (
+                <Spinner className="size-4" data-icon="inline-start" />
+              ) : (
+                ""
+              )}
               Create Account
             </Button>
           </form>
@@ -159,9 +171,9 @@ export default function Register() {
               Login
             </button>
           </div>
-          {error && (
+          {getError && (
             <p className="text-xs text-red-400 mt-2 font-normal text-center">
-              {error}
+              {getError}
             </p>
           )}
         </div>
