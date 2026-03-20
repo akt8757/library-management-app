@@ -21,7 +21,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <LayoutWrapper>{children}</LayoutWrapper>
+        <TooltipProvider>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </TooltipProvider>
       </body>
     </html>
   );

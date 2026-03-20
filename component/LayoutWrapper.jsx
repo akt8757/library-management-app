@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import Menu from "./home/Menu";
-import { HeroUIProvider } from "@heroui/react";
 
 export default function LayoutWrapper({ children }) {
   const pathname = usePathname();
@@ -13,10 +12,8 @@ export default function LayoutWrapper({ children }) {
 
   return (
     <>
-      <HeroUIProvider>
-        {!shouldHideNavbar && <Menu />}
-        {children}
-      </HeroUIProvider>
+      {!shouldHideNavbar && <Menu />}
+      {children}
     </>
   );
 }
