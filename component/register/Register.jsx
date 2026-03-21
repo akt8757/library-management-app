@@ -12,6 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { BookOpen } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 import { Spinner } from "@/components/ui/spinner";
+import { toast } from "sonner";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(true);
@@ -40,9 +41,13 @@ export default function Register() {
     setLoading(false);
 
     if (error) {
+      // toast.error("Event has been created")
       setGetError(error.message);
       console.log("Signup error:", error);
     } else {
+      toast.success("Event has been created", {
+        description: "please verify your given mail",
+      });
       console.log("Signup success:", data);
     }
   };
