@@ -162,7 +162,7 @@ export function AppSidebar({ ...props }) {
     };
     fetchUser();
   }, []);
-  console.log("user from dashboard", user);
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>

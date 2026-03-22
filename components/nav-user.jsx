@@ -63,13 +63,18 @@ export function NavUser({ user }) {
               className=" cursor-pointer data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={<UserRound />} alt="Asraful Kabir" />
+                <AvatarImage
+                  src={user?.user_metadata?.avatar_url}
+                  alt={user?.user_metadata?.name}
+                />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">Asraful Kabir</span>
+                <span className="truncate font-medium">
+                  {user?.user_metadata?.name}
+                </span>
                 <span className="truncate text-xs text-muted-foreground">
-                  {user?.email}
+                  {user?.user_metadata?.email}
                 </span>
               </div>
               <EllipsisVerticalIcon className="ml-auto size-4" />
@@ -84,13 +89,18 @@ export function NavUser({ user }) {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={<UserRound />} alt="Asraful Kabir" />
+                  <AvatarImage
+                    src={user?.user_metadata?.avatar_url}
+                    alt={user?.user_metadata?.name}
+                  />
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Asraful Kabir</span>
+                  <span className="truncate font-medium">
+                    {user?.user_metadata?.name}
+                  </span>
                   <span className="truncate text-xs text-muted-foreground">
-                    {user?.email}
+                    {user?.user_metadata?.email}
                   </span>
                 </div>
               </div>
@@ -98,23 +108,22 @@ export function NavUser({ user }) {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <CircleUserRoundIcon />
+                <CircleUserRoundIcon color="#49bbbd" />
                 <div className="cursor-pointer">Account</div>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <CreditCardIcon />
+                <CreditCardIcon color="#49bbbd" />
                 <div className="cursor-pointer">Billing</div>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <BellIcon />
+                <BellIcon color="#49bbbd" />
                 <div className="cursor-pointer">Notifications</div>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOutIcon />
+              <LogOutIcon color="red" />
               <div className="cursor-pointer" onClick={handleLogout}>
-                {" "}
                 Log out
               </div>
             </DropdownMenuItem>

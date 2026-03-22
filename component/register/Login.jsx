@@ -32,8 +32,6 @@ export default function Login({ signInPopup, closeSignUp }) {
   const submitForm = async (value) => {
     const email = value.email;
     const password = value.password;
-    console.log("mail:", email);
-    console.log("password:", password);
     setLoading(true);
     const { data } = await supabase.auth.signInWithPassword({
       email,
@@ -55,8 +53,6 @@ export default function Login({ signInPopup, closeSignUp }) {
         redirectTo: "http://localhost:3000/auth/callback",
       },
     });
-
-    console.log("oauth", error);
   };
 
   return (
