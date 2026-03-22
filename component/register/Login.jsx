@@ -10,6 +10,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { BookOpen } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
+import { Spinner } from "@/components/ui/spinner";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Login({ signInPopup, closeSignUp }) {
   const [showPassword, setShowPassword] = useState(true);
@@ -30,29 +32,42 @@ export default function Login({ signInPopup, closeSignUp }) {
   const submitForm = async (value) => {
     const email = value.email;
     const password = value.password;
-    console.log("mail:", email);
-    console.log("password:", password);
+    setLoading(true);
     const { data } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+    setLoading(false);
 
-    if (data.user === null) {
+    if (!data.user) {
       setError("user not register");
     } else {
+      router.push("/dashboard");
     }
+  };
+
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "http://localhost:3000/auth/callback",
+      },
+    });
   };
 
   return (
     <>
       <div className="flex items-center justify-center">
         <div className="md:bg-white rounded-2xl md:shadow-lg py-15 w-full max-w-lg px-10">
-          <div className="w-full flex items-center justify-center">
-            <div className="flex gap-2 items-center">
-              <BookOpen className="w-15 h-15 text-[#49BBBD]" />
-              <h3 className="text-2xl font-bold text-[#49BBBD]">BookNest</h3>
-            </div>
-          </div>
+          <Button
+            type="button"
+            isLoading={loading}
+            onClick={handleGoogleLogin}
+            className="w-full flex items-center justify-center gap-3 border border-gray-200 py-6 rounded-full bg-white text-[#23262F] font-bold font-dm text-base hover:bg-gray-50 transition"
+          >
+            <FcGoogle size={20} />
+            <span>Login with Google</span>
+          </Button>
           <h2 className="text-2xl mt-12 text-[#141416] font-normal mb-6">
             Sign in
           </h2>
@@ -120,34 +135,16 @@ export default function Login({ signInPopup, closeSignUp }) {
                 )}
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Checkbox
-                id="terms"
-                onCheckedChange={(e) => setIsChecked(e)}
-                className="
-                flex items-center justify-center cursor-pointer
-                  h-5 w-5
-                  data-[state=checked]:bg-[#49BBBD] 
-                  data-[state=checked]:border-[#49BBBD] 
-                  data-[state=checked]:text-white
-                  data-[state=checked]:items-center
-                  border-[#B1B5C3]
-                  "
-              />
-              <span className="font-medium text-sm text-[#141416] ">
-                Sign up to accept our
-                <Link href="/terms-and-condition" className="text-[#49BBBD]">
-                  {" "}
-                  terms & conditions.
-                </Link>
-              </span>
-            </div>
             <Button
-              disabled={!isChecked}
-              isLoading={loading}
+              disabled={loading}
               type="submit"
-              className="w-full bg-[#49BBBD] text-white font-bold font-dm text-base py-6 mt-5 rounded-full transition"
+              className="w-full cursor-pointer bg-[#49BBBD] text-white font-bold font-dm text-base py-6 mt-5 rounded-full transition"
             >
+              {loading ? (
+                <Spinner className="size-4" data-icon="inline-start" />
+              ) : (
+                ""
+              )}
               Login
             </Button>
           </form>

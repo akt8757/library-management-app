@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Menu,
@@ -15,7 +15,7 @@ import {
   CheckCircle,
   Rocket,
 } from "lucide-react";
-
+import { getUserData } from "@/lib/utils";
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

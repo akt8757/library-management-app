@@ -33,6 +33,9 @@ import {
 } from "lucide-react";
 import { BookOpen } from "lucide-react";
 import Link from "next/link";
+import { getUserData } from "@/lib/utils";
+import { useState, useEffect } from "react";
+
 const data = {
   user: {
     name: "shadcn",
@@ -151,6 +154,15 @@ const data = {
 };
 
 export function AppSidebar({ ...props }) {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const userData = await getUserData();
+      setUser(userData.user);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -171,7 +183,7 @@ export function AppSidebar({ ...props }) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );
