@@ -30,8 +30,12 @@ import {
   FileChartColumnIcon,
   FileIcon,
   CommandIcon,
+  SquareTerminal,
+  Bot,
+  BookOpen,
+  Settings2,
 } from "lucide-react";
-import { BookOpen } from "lucide-react";
+// import { BookOpen } from "lucide-react";
 import Link from "next/link";
 import { getUserData } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -44,29 +48,89 @@ const data = {
   },
   navMain: [
     {
-      title: "Dashboard",
+      title: "Books",
       url: "#",
-      icon: <LayoutDashboardIcon />,
+      icon: BookOpen,
+      isActive: true,
+      items: [
+        {
+          title: "Book list",
+          url: "dashboard/books/book-list",
+        },
+        {
+          title: "Add books",
+          url: "dashboard/books/add-books",
+        },
+        {
+          title: "Edit books",
+          url: "dashboard/books/edit-books",
+        },
+      ],
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: <ListIcon />,
+      title: "Members",
+      url: "dashboard/members",
+      icon: Bot,
+      items: [
+        {
+          title: "All members",
+          url: "dashboard/members/all-members",
+        },
+        {
+          title: "Explorer",
+          url: "#",
+        },
+        {
+          title: "Quantum",
+          url: "#",
+        },
+      ],
     },
     {
-      title: "Analytics",
+      title: "Documentation",
       url: "#",
-      icon: <ChartBarIcon />,
+      icon: BookOpen,
+      items: [
+        {
+          title: "Introduction",
+          url: "#",
+        },
+        {
+          title: "Get Started",
+          url: "#",
+        },
+        {
+          title: "Tutorials",
+          url: "#",
+        },
+        {
+          title: "Changelog",
+          url: "#",
+        },
+      ],
     },
     {
-      title: "Projects",
+      title: "Settings",
       url: "#",
-      icon: <FolderIcon />,
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: <UsersIcon />,
+      icon: Settings2,
+      items: [
+        {
+          title: "General",
+          url: "#",
+        },
+        {
+          title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
+          url: "#",
+        },
+      ],
     },
   ],
   navClouds: [
