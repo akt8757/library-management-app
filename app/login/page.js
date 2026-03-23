@@ -1,6 +1,6 @@
 import React from "react";
 import { supabase } from "../../lib/supabaseClient";
-import Login from "@/component/register/Login";
+import Login from "@/components/app/register/Login";
 
 export default function Page() {
   return (

@@ -1,9 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Menu from "@/component/home/Menu";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import LayoutWrapper from "@/component/LayoutWrapper";
-// import CustomProvider from "@/redux/CustomProvider";
+// import { TooltipProvider } from "@/components/ui/tooltip";
+import LayoutWrapper from "@/components/app/LayoutWrapper";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -21,9 +19,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <TooltipProvider>
-          <LayoutWrapper>{children}</LayoutWrapper>
-        </TooltipProvider>
+        {/* <TooltipProvider> */}
+        <LayoutWrapper>{children}</LayoutWrapper>
+        {/* </TooltipProvider> */}
       </body>
     </html>
   );

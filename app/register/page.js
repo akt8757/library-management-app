@@ -1,6 +1,6 @@
 import React from "react";
 import { supabase } from "../../lib/supabaseClient";
-import Register from "@/component/register/Register";
+import Register from "@/components/app/register/Register";
 
 export default function Page() {
   //   const signUp = async () => {
