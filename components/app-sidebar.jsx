@@ -55,15 +55,15 @@ const data = {
       items: [
         {
           title: "Book list",
-          url: "dashboard/books/book-list",
+          url: "/dashboard/books/book-list",
         },
         {
           title: "Add books",
-          url: "dashboard/books/add-books",
+          url: "/dashboard//books/add-book",
         },
         {
           title: "Edit books",
-          url: "dashboard/books/edit-books",
+          url: "/dashboard//books/edit-book",
         },
       ],
     },
