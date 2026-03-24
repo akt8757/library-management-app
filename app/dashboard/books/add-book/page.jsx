@@ -1,16 +1,6 @@
-"use client";
+import React from "react";
+import AddBook from "@/components/app/books/add-book/AddBook";
 
-import { useTheme } from "next-themes";
-
-export default function Page() {
-  const { theme, setTheme } = useTheme();
-
-  return (
-    <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="border px-3 py-2 rounded"
-    >
-      Toggle Mode
-    </button>
-  );
+export default function page() {
+  return <AddBook />;
 }

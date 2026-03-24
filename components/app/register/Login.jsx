@@ -1,14 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { Checkbox } from "@/components/ui/checkbox";
+
 import { useState } from "react";
 import { IoIosEyeOff } from "react-icons/io";
 import { IoMdEye } from "react-icons/io";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 import { Spinner } from "@/components/ui/spinner";
 import { FcGoogle } from "react-icons/fc";
