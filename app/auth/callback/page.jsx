@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 // import { useRouter } from "next/navigation";
 import Image from "next/image";
-import MainLoader from "@/component/mainLoader";
+import MainLoader from "@/components/app/mainLoader";
 import { Button } from "@base-ui/react";
 import Link from "next/link";
 
