@@ -74,7 +74,7 @@ const data = {
       items: [
         {
           title: "All members",
-          url: "dashboard/members/all-members",
+          url: "/dashboard/members/all-members",
         },
         {
           title: "Explorer",
