@@ -13,8 +13,6 @@ export default function LayoutWrapper({ children }) {
 
   const hideNavbarRoutes = pathName.startsWith("/dashboard");
 
-  // const shouldHideNavbar = hideNavbarRoutes.includes(pathname);
-
   return (
     <>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
