@@ -1,0 +1,236 @@
+{
+  "category": "FLIGHT",
+  "name": "Sample Item",
+  "description": "Test booking",
+  "adult_count": 2,
+  "child_count": 1,
+  "kid_count": 0,
+  "infant_count": 0,
+  "status": "TICKETED",
+  "attachments": [],
+  "flight_details": {
+    "country_id": 1,
+    "supplier_id": 2,
+    "booking_date": "2024-06-01",
+    "ticketing_date": "2024-06-01",
+    "booking_id": "BK123456",
+    "pnr": "ABCD1234",
+    "gds_pnr": "XYZ9876",
+    "airline_pnr": ["A12345", "B98765"],
+    "trip_type": "ROUND_TRIP",
+    "fare_type": "CORPORATE",
+    "class_type": "BUSINESS",
+    "main_carrier_code": "EK",
+    "main_flight_number": "EK256",
+    "departure_date_time": "2024-06-10 08:00:00",
+    "return_date_time": "2024-06-20 20:30:00",
+    "ticket_status": "BOOKED",
+    "is_refundable": true,
+    "supplier_reference": "SUPPREF001",
+    "direct_flight": false,
+    "refund_charge": 25.5,
+    "refund_policy": "Refund available with 48h notice.",
+    "change_charge": 15.0,
+    "change_policy": "One date change allowed.",
+    "cancellation_charge": 50.0,
+    "cancellation_policy": "No refund after departure.",
+    "route_details": [
+      {
+        "dep": "DAC",
+        "arr": "DXB",
+        "dep_date_time": "2026-03-28",
+        "arr_date_time": "2026-04-28",
+        "carrier_codes": ["BS", "VQ"],
+        "booking_classes": ["Y", "M"],
+        "flight_numbers": ["BS-192", "BS-23"]
+      },
+      {
+        "dep": "DXB",
+        "arr": "DAC",
+        "dep_date_time": "2026-03-28",
+        "arr_date_time": "2026-04-28",
+        "carrier_codes": ["BS", "VQ"],
+        "booking_classes": ["Y", "M"],
+        "flight_numbers": ["BS-192", "BS-23"]
+      }
+    ]
+  },
+  "fare_infos": [
+    {
+      "action_source_id": "8",
+      "total_base_price": 800,
+      "total_tax": 150,
+      "total_discount": 50,
+      "total_paid_amount": 1000,
+      "total_due_amount": 0,
+      "total_refund_amount": 0,
+      "type": "SELLING",
+      "description": "Main fare",
+      "markup_commissions": [
+        {
+          "apply_to": "BASE_FARE",
+          "name": "7% Commission for supplier",
+          "action_type": "COMMISSION",
+          "value": 7,
+          "type": "PERCENTAGE",
+          "description": "This is Supplier default commission we get",
+          "is_compound": false
+        }
+      ],
+      "taxes": [1, 2, 3],
+      "breakdowns": [
+        {
+          "type": "SELLING",
+          "pax_type": "ADULT",
+          "base_fare": 400,
+          "tax": 50,
+          "total_fare": 450,
+          "pax_count": 2,
+          "travelers": [
+            {
+              "title": "MR",
+              "first_name": "Masud",
+              "last_name": "Parvez",
+              "passport_number": "74927492",
+              "passport_expiry_date": "2028-08-24",
+              "passport_issuance_country_id": "13",
+              "email": "sajjadahmedpax@gmail.com",
+              "phone": "+8801818729249",
+              "address": "",
+              "city": "",
+              "state": "",
+              "zip": "",
+              "country_id": "13",
+              "docs": []
+            }
+          ]
+        }
+      ],
+      "service_charges": [
+        {
+          "name": "Flyrn service charges",
+          "price": 100,
+          "description": "This is test"
+        }
+      ]
+    }
+  ]
+}
+
+const [formData, setFormData] = useState({
+    category: "FLIGHT",
+    name: "Sample Item",
+    description: "Test booking",
+    adult_count: 2,
+    child_count: 1,
+    kid_count: 0,
+    infant_count: 0,
+    status: "TICKETED",
+    attachments: [],
+
+    flight_details: {
+      country_id: 1,
+      supplier_id: 2,
+      booking_date: "2024-06-01",
+      ticketing_date: "2024-06-01",
+      booking_id: "BK123456",
+      pnr: "ABCD1234",
+      gds_pnr: "XYZ9876",
+      airline_pnr: ["A12345", "B98765"],
+      trip_type: "ROUND_TRIP",
+      fare_type: "CORPORATE",
+      class_type: "BUSINESS",
+      main_carrier_code: "EK",
+      main_flight_number: "EK256",
+      departure_date_time: "2024-06-10T08:00",
+      return_date_time: "2024-06-20T20:30",
+      ticket_status: "BOOKED",
+      is_refundable: true,
+      supplier_reference: "SUPPREF001",
+      direct_flight: false,
+      refund_charge: 25.5,
+      refund_policy: "Refund available with 48h notice.",
+      change_charge: 15.0,
+      change_policy: "One date change allowed.",
+      cancellation_charge: 50.0,
+      cancellation_policy: "No refund after departure.",
+
+      route_details: [
+        {
+          dep: "DAC",
+          arr: "DXB",
+          dep_date_time: "2026-03-28",
+          arr_date_time: "2026-04-28",
+          carrier_codes: ["BS", "VQ"],
+          booking_classes: ["Y", "M"],
+          flight_numbers: ["BS-192", "BS-23"],
+        },
+      ],
+    },
+
+    fare_infos: [
+      {
+        action_source_id: "8",
+        total_base_price: 800,
+        total_tax: 150,
+        total_discount: 50,
+        total_paid_amount: 1000,
+        total_due_amount: 0,
+        total_refund_amount: 0,
+        type: "SELLING",
+        description: "Main fare",
+
+        markup_commissions: [
+          {
+            apply_to: "BASE_FARE",
+            name: "7% Commission for supplier",
+            action_type: "COMMISSION",
+            value: 7,
+            type: "PERCENTAGE",
+            description: "This is Supplier default commission we get",
+            is_compound: false,
+          },
+        ],
+
+        taxes: [1, 2, 3],
+
+        breakdowns: [
+          {
+            type: "SELLING",
+            pax_type: "ADULT",
+            base_fare: 400,
+            tax: 50,
+            total_fare: 450,
+            pax_count: 2,
+
+            travelers: [
+              {
+                title: "MR",
+                first_name: "Masud",
+                last_name: "Parvez",
+                passport_number: "74927492",
+                passport_expiry_date: "2028-08-24",
+                passport_issuance_country_id: "13",
+                email: "sajjadahmedpax@gmail.com",
+                phone: "+8801818729249",
+                address: "",
+                city: "",
+                state: "",
+                zip: "",
+                country_id: "13",
+                docs: [],
+              },
+            ],
+          },
+        ],
+
+        service_charges: [
+          {
+            name: "Flyrn service charges",
+            price: 100,
+            description: "This is test",
+          },
+        ],
+      },
+    ],
+  });
